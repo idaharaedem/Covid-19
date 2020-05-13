@@ -51,3 +51,10 @@ export const CountrySelector = async() => {
         console.log(error)
     }
 }
+
+export const WorldHealth = async() => {
+    const url = 'https://covid19.mathdro.id/api';
+
+    const data = await axios(url);
+    return data;
+}

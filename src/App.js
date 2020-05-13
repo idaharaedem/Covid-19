@@ -1,6 +1,6 @@
 import React from 'react';
-import {Cards, Chart, CountryPicker, Header} from './components';
-import {DataGrab} from './components/APICalls'
+import {Cards, Chart, CountryPicker, Header, Carousel} from './components';
+import {DataGrab, WorldHealth} from './components/APICalls'
 import {connect} from 'react-redux';
 import {setCards} from './redux/cards/cards.action'; 
 
@@ -11,6 +11,7 @@ class App extends React.Component {
     state = {
         data: {},
         countries: '',
+        dataHealth: {},
     }
 
     handleCountryChange = async (country) => {
@@ -25,7 +26,10 @@ class App extends React.Component {
 
     async componentDidMount () {
         const fetchedData = await DataGrab();
-        this.setState({data: fetchedData});
+        const worldHealthData = await WorldHealth();
+        console.log(worldHealthData);
+        this.setState({data: fetchedData, dataHealth: worldHealthData});
+
     }
 
     render(){
@@ -35,6 +39,7 @@ class App extends React.Component {
                <Cards data={this.state.data}/>
                <CountryPicker handleCountryChange={this.handleCountryChange}/>
                <Chart data={this.state.data} countries={this.state.countries}/>
+               
             </div>
         )
     }
