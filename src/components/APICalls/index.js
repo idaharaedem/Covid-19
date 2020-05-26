@@ -25,6 +25,8 @@ export const DailyData = async() => {
     try {
 
         const {data} = await axios(`${url}/daily`);
+
+        
         
         const modData = data.map((dayData) => ({
             confirmed: dayData.confirmed.total,
@@ -43,7 +45,7 @@ export const CountrySelector = async() => {
     try {
         
         const {data: {countries}} = await axios(`${url}/countries`);
-
+        
         const modData = countries.map(country => country.name)
         return modData;
 
@@ -53,8 +55,6 @@ export const CountrySelector = async() => {
 }
 
 export const WorldHealth = async() => {
-    const url = 'https://covid19.mathdro.id/api';
+    const url = 'https://www.who.int/feeds/entity/hac/en/rss.xml';
 
-    const data = await axios(url);
-    return data;
 }

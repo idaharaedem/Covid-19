@@ -22,12 +22,14 @@ class App extends React.Component {
             data: fetchedData,
             countries: country
         })
+        console.log(fetchedData);
     }
 
     async componentDidMount () {
         const fetchedData = await DataGrab();
         const worldHealthData = await WorldHealth();
         console.log(worldHealthData);
+        
         this.setState({data: fetchedData, dataHealth: worldHealthData});
 
     }
